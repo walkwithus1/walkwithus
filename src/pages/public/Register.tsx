@@ -151,14 +151,7 @@ export default function Register() {
           </Link>
         </p>
 
-        {/*
-          There is no "forgot password" link on either this page or the login
-          page because there is no password reset flow — supabase.auth
-          .resetPasswordForEmail is not called anywhere in this app. A link
-          pointing at a route that does not exist lands on a blank page, so it
-          is omitted rather than shipped broken.
-        */}
-        <p className="mt-6 text-center text-sm">
+        <p className="mt-4 text-center text-sm">
           <LinkButton to="/help" variant="ghost" size="sm">
             Browse help requests instead
           </LinkButton>

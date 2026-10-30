@@ -85,17 +85,28 @@ export default function Login() {
             )}
           </Field>
 
-          <Field label="Password" required>
-            {(p) => (
-              <Input
-                {...p}
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="current-password"
-              />
-            )}
-          </Field>
+          <div className="flex items-center justify-between">
+            <Field label="Password" required>
+              {(p) => (
+                <Input
+                  {...p}
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
+                />
+              )}
+            </Field>
+          </div>
+
+          <div className="flex justify-end">
+            <Link
+              to="/forgot-password"
+              className="text-xs font-semibold text-primary hover:underline focus:outline-none focus-visible:outline-2 focus-visible:outline-primary"
+            >
+              Forgot password?
+            </Link>
+          </div>
 
           <Button
             type="submit"
@@ -118,14 +129,6 @@ export default function Login() {
           </Link>
         </p>
 
-        {/*
-          There is no "Forgot password?" link because there is no password reset
-          flow. supabase.auth.resetPasswordForEmail is not called anywhere in this
-          app, so the link used to point at /forgot-password, which had no route
-          and landed on a blank page. Add the real flow (request a reset email,
-          then a /reset-password route reading the recovery session) and link it
-          here, rather than shipping a link that cannot work.
-        */}
         <p className="mt-4 text-center text-sm">
           <LinkButton to="/help" variant="ghost" size="sm">
             Browse help requests instead

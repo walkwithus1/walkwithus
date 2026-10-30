@@ -1,10 +1,10 @@
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-import { ClipboardList, ExternalLink, LayoutDashboard, ListChecks, LogOut } from 'lucide-react';
+import { ClipboardList, ExternalLink, Heart, Inbox, LayoutDashboard, ListChecks, LogOut } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { useRole } from '../../hooks/useRole';
 
 /**
- * The two console-level destinations.
+ * The console-level destinations.
  *
  * `end` controls NavLink's OWN match, which is what sets `aria-current`. The
  * dashboard link needs `end: true` so that it does not also announce itself as
@@ -19,6 +19,8 @@ import { useRole } from '../../hooks/useRole';
 const CONSOLE_NAV = [
   { to: '/staff', label: 'Dashboard', icon: LayoutDashboard, end: true },
   { to: '/staff/requests', label: 'All requests', icon: ListChecks, end: false },
+  { to: '/staff/enquiries', label: 'Enquiries', icon: Inbox, end: false },
+  { to: '/staff/donations', label: 'Donations', icon: Heart, end: false },
 ] as const;
 
 /**
@@ -90,6 +92,10 @@ export default function StaffLayout() {
               const Icon = entry.icon;
               const active = inReviewScreen
                 ? entry.to === '/staff/requests'
+                : entry.to === '/staff/enquiries'
+                ? location.pathname.startsWith('/staff/enquiries')
+                : entry.to === '/staff/donations'
+                ? location.pathname.startsWith('/staff/donations')
                 : entry.to === location.pathname;
               return (
                 <NavLink
